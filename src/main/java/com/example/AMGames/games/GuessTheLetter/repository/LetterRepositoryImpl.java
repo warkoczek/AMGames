@@ -2,12 +2,14 @@ package com.example.AMGames.games.GuessTheLetter.repository;
 
 import com.example.AMGames.games.GuessTheLetter.model.Letter;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 @Component
+@Repository
 public class LetterRepositoryImpl implements LetterRepository {
 
     private ArrayList<Letter> letters;
@@ -15,7 +17,7 @@ public class LetterRepositoryImpl implements LetterRepository {
     private final Random random = new Random();
 
     public LetterRepositoryImpl() {
-        letters = new ArrayList<Letter>(Arrays.asList(
+        letters = new ArrayList<>(Arrays.asList(
                 new Letter("A"), new Letter("B"), new Letter("C"), new Letter("D"),
                 new Letter("E"), new Letter("F"), new Letter("G"), new Letter("H"),
                 new Letter("I"), new Letter("J"), new Letter("K"), new Letter("L"),
@@ -27,7 +29,7 @@ public class LetterRepositoryImpl implements LetterRepository {
 
     @Override
     public boolean hasLetter(String guess) {
-        return letters.stream().filter(letter -> letter.getName().equalsIgnoreCase(guess)).findFirst().isPresent();
+        return letters.stream().anyMatch(letter -> letter.getName().equalsIgnoreCase(guess));
     }
 
     @Override

@@ -6,9 +6,10 @@ public interface GuessTheLetterGame {
     String getGuess();
     void reset();
     void check();
-    void setGuess(String letter);
+    void setGuess(String guess);
     int getRemainingGuesses();
     int getGuessCount();
     boolean isGameLost();
     boolean isGameWon();
+    boolean isValidLetter();
 }
